@@ -19,6 +19,11 @@ fun DependencyHandler.materialDesign() {
     implementation(Libraries.materialDesign)
 }
 
+fun DependencyHandler.androidXRecyclerView() {
+    androidXCore()
+    implementation(Libraries.androidxRecyclerView)
+}
+
 fun DependencyHandler.dataBinding() {
     kapt(Libraries.dataBinding)
 }
