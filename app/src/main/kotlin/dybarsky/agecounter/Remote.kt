@@ -6,20 +6,18 @@ import android.widget.RemoteViews
 
 class Remote(context: Context, private val persistence: Persistence) {
 
-    private val remote = RemoteViews(context.packageName, R.layout.widget_layout)
+    private val drawer = Drawer(context)
+    private val views = RemoteViews(context.packageName, R.layout.widget_layout)
     private val widgetManager = AppWidgetManager.getInstance(context)
 
     fun update(widgetId: Int) {
         val birthday = persistence.birthday
         val (whole, fraction) = getAge(birthday).split()
-        remote.update(whole, fraction)
-        widgetManager.updateAppWidget(widgetId, remote)
+        views.update(whole, fraction)
+        widgetManager.updateAppWidget(widgetId, views)
     }
 
     private fun RemoteViews.update(ageWhole: Int, ageFraction: Int) {
-        setTextViewText(R.id.years_whole, ageWhole.toString())
-        setTextViewText(R.id.years_fraction, ".$ageFraction")
+        setImageViewBitmap(R.id.image, drawer.draw(ageWhole, ageFraction))
     }
 }
-
-

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
@@ -7,20 +7,10 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal|center_vertical">
 
-    <TextView
-        style="@style/Whole"
-        android:id="@+id/years_whole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="33."
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 
-    <TextView
-        style="@style/Fraction"
-        android:id="@+id/years_fraction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="123145"
-        />
-
-</LinearLayout>
+</FrameLayout>
