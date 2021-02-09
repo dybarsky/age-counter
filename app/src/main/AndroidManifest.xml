@@ -6,6 +6,7 @@
     >
 
     <application
+        android:name=".AgeCounterApp"
         android:allowBackup="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
@@ -25,8 +26,6 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
         </activity>
-
-        <service android:name=".AgeCounterService"/>
 
     </application>
 

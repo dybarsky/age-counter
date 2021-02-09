@@ -74,8 +74,7 @@ class AgeCounterConfigActivity : AppCompatActivity() {
                 model.day ?: 0,
                 0, 0, 0)
         }
-        val intent = AgeCounterService.intent(this, widgetId, calendar.timeInMillis)
-        startService(intent)
+        AgeCounterApp.instance.worker.start(this, widgetId, calendar.timeInMillis)
     }
 
     private fun close() {

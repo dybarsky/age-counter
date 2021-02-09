@@ -7,6 +7,6 @@ class AgeCounterWidgetProvider : AppWidgetProvider() {
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         super.onDeleted(context, appWidgetIds)
-        context.stopService(AgeCounterService.intent(context))
+        AgeCounterApp.instance.worker.stop()
     }
 }
