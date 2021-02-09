@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DateButton" parent="Widget.MaterialComponents.Button.TextButton">
+
+    </style>
+
+    <style name="MainButton" parent="Widget.MaterialComponents.Button">
+
+    </style>
+
+    <style name="Title" parent="TextAppearance.AppCompat">
+
+
+    </style>
+
+    <style name="Whole" parent="TextAppearance.AppCompat">
+
+    </style>
+
+    <style name="Fraction" parent="TextAppearance.AppCompat">
+
+    </style>
+
+</resources>
