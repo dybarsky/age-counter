@@ -2,7 +2,7 @@ object Versions {
 
     // Android build tools versions
 
-    const val androidSdkMin = 21
+    const val androidSdkMin = 26
     const val androidSdkCompile = 30
     const val androidSdkTarget = 30
     const val androidBuildTools = "30.0.3"

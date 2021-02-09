@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Age counter</string>
     <string name="config_title">Enter your birthday</string>
     <string name="config_day">day</string>
     <string name="config_month">month</string>
     <string name="config_year">year</string>
-    <string name="config_done">done</string>
+    <string name="config_done">Done</string>
 </resources>

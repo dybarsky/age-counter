@@ -2,24 +2,25 @@
 <resources>
 
     <style name="DateButton" parent="Widget.MaterialComponents.Button.TextButton">
-
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/oswald</item>
     </style>
 
     <style name="MainButton" parent="Widget.MaterialComponents.Button">
-
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/oswald</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Title" parent="TextAppearance.AppCompat">
-
-
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/oswald</item>
     </style>
 
-    <style name="Whole" parent="TextAppearance.AppCompat">
-
-    </style>
-
-    <style name="Fraction" parent="TextAppearance.AppCompat">
-
+    <style name="Item" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/oswald</item>
     </style>
 
 </resources>
