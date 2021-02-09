@@ -12,6 +12,9 @@ import java.util.Calendar
 class AgeCounterConfigActivity : AppCompatActivity() {
 
     private var widgetId: Int = -1
+
+    private val model = Model(null, null, null)
+
     private val binding by lazy {
         ActivityConfigBinding.inflate(layoutInflater)
     }
@@ -29,27 +32,49 @@ class AgeCounterConfigActivity : AppCompatActivity() {
             ?.getInt(EXTRA_APPWIDGET_ID, INVALID_APPWIDGET_ID)
             ?: INVALID_APPWIDGET_ID
 
-        with(binding) {
-            day.setOnClickListener {
+        binding.setup()
+    }
 
+    private fun ActivityConfigBinding.setup() {
+        day.setOnClickListener {
+            showDialog(days) {
+                day.text = it.toString()
+                model.day = it
+                check()
             }
-            month.setOnClickListener {
-
+        }
+        month.setOnClickListener {
+            showDialog(months) {
+                month.text = it
+                model.month = it
+                check()
             }
-            year.setOnClickListener {
-
+        }
+        year.setOnClickListener {
+            showDialog(years) {
+                year.text = it.toString()
+                model.year = it
+                check()
             }
-            done.setOnClickListener {
-                startCounter()
-                close()
-            }
+        }
+        done.setOnClickListener {
+            startCounter()
+            close()
         }
     }
 
-    private fun getBirthday() = Calendar.getInstance().apply { set(1987, 7, 9, 0, 0, 0) } // todo
+    private fun check() {
+        binding.done.isEnabled = model.isValid
+    }
 
     private fun startCounter() {
-        val intent = AgeCounterService.intent(this, widgetId, getBirthday().timeInMillis)
+        val calendar = Calendar.getInstance().apply {
+            set(model.year ?: 0,
+                months.indexOf(model.month ?: 0),
+                model.day ?: 0,
+                0, 0, 0)
+        }
+        val intent = AgeCounterService.intent(this, widgetId, calendar.timeInMillis)
         startService(intent)
     }
 
@@ -60,5 +85,16 @@ class AgeCounterConfigActivity : AppCompatActivity() {
         setResult(Activity.RESULT_OK, resultValue)
         finish()
     }
+
+}
+
+class Model(
+    var day: Int?,
+    var month: String?,
+    var year: Int?
+) {
+
+    val isValid: Boolean
+        get() = day != null && month != null && year != null
 
 }
