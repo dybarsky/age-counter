@@ -3,7 +3,7 @@
     android:minHeight="50dp"
     android:previewImage="@mipmap/preview"
     android:initialLayout="@layout/widget_layout"
-    android:configure="dybarsky.agecounter.AgeCounterConfigActivity"
+    android:configure="dybarsky.agecounter.ConfigActivity"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen">
 </appwidget-provider>

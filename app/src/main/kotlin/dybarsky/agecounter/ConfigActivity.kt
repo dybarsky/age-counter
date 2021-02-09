@@ -7,16 +7,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dybarsky.agecounter.databinding.ActivityConfigBinding
-import java.util.Calendar
 
-class AgeCounterConfigActivity : AppCompatActivity() {
+class ConfigActivity : AppCompatActivity(), View {
 
     private var widgetId: Int = -1
 
-    private val model = Model(null, null, null)
-
     private val binding by lazy {
         ActivityConfigBinding.inflate(layoutInflater)
+    }
+
+    private val presenter by lazy {
+        ConfigPresenter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,52 +33,32 @@ class AgeCounterConfigActivity : AppCompatActivity() {
             ?.getInt(EXTRA_APPWIDGET_ID, INVALID_APPWIDGET_ID)
             ?: INVALID_APPWIDGET_ID
 
+        presenter.setWidgetId(widgetId)
         binding.setup()
     }
 
     private fun ActivityConfigBinding.setup() {
         day.setOnClickListener {
             showDialog(days) {
-                day.text = it.toString()
-                model.day = it
-                check()
+                presenter.setDay(it)
             }
         }
         month.setOnClickListener {
             showDialog(months) {
-                month.text = it
-                model.month = it
-                check()
+                presenter.setMonth(it)
             }
         }
         year.setOnClickListener {
             showDialog(years) {
-                year.text = it.toString()
-                model.year = it
-                check()
+                presenter.setYear(it)
             }
         }
         done.setOnClickListener {
-            startCounter()
-            close()
+            presenter.save()
         }
     }
 
-    private fun check() {
-        binding.done.isEnabled = model.isValid
-    }
-
-    private fun startCounter() {
-        val calendar = Calendar.getInstance().apply {
-            set(model.year ?: 0,
-                months.indexOf(model.month ?: 0),
-                model.day ?: 0,
-                0, 0, 0)
-        }
-        AgeCounterApp.instance.worker.start(this, widgetId, calendar.timeInMillis)
-    }
-
-    private fun close() {
+    override fun close() {
         val resultValue = Intent().apply {
             putExtra(EXTRA_APPWIDGET_ID, widgetId)
         }
@@ -85,15 +66,21 @@ class AgeCounterConfigActivity : AppCompatActivity() {
         finish()
     }
 
+    override fun displayDay(day: String) {
+        binding.day.text = day
+    }
+
+    override fun displayMonth(month: String) {
+        binding.month.text = month
+    }
+
+    override fun displayYear(year: String) {
+        binding.year.text = year
+    }
+
+    override fun setReady(ready: Boolean) {
+        binding.done.isEnabled = ready
+    }
 }
 
-class Model(
-    var day: Int?,
-    var month: String?,
-    var year: Int?
-) {
 
-    val isValid: Boolean
-        get() = day != null && month != null && year != null
-
-}

@@ -6,14 +6,14 @@
     >
 
     <application
-        android:name=".AgeCounterApp"
+        android:name=".App"
         android:allowBackup="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:allowBackup"
         >
 
-        <receiver android:name=".AgeCounterWidgetProvider" >
+        <receiver android:name=".WidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -21,11 +21,13 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
-        <activity android:name=".AgeCounterConfigActivity">
+        <activity android:name=".ConfigActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
         </activity>
+
+        <receiver android:name=".Receiver"/>
 
     </application>
 

@@ -3,7 +3,7 @@ package dybarsky.agecounter
 import kotlin.math.pow
 
 
-private const val FRACTION_DIGITS = 8
+private const val FRACTION_DIGITS = 7
 private const val MILLIS_IN_YEAR = 31556952000.0
 
 private val fractionMultiplier = 10.0.pow(FRACTION_DIGITS)
