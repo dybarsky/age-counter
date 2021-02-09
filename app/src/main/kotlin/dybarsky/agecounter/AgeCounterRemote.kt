@@ -7,5 +7,5 @@ fun createRemote(context: Context) = RemoteViews(context.packageName, R.layout.w
 
 fun RemoteViews.update(ageWhole: Int, ageFraction: Int) {
     setTextViewText(R.id.years_whole, ageWhole.toString())
-    setTextViewText(R.id.years_fraction, ageFraction.toString())
+    setTextViewText(R.id.years_fraction, ".$ageFraction")
 }
