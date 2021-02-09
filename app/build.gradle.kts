@@ -23,13 +23,9 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-//    androidXRecyclerView()
-//    androidXLifecycle()
-//    androidXCardView()
-//    materialDesign()
-//    daggerAndroid()
-//    dataBinding()
-//    koinAndroid()
-//    multidex()
-//    ktx()
+    ktx()
+    coroutines()
+    dataBinding()
+    androidXCore()
+    materialDesign()
 }
