@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID
 import android.appwidget.AppWidgetManager.INVALID_APPWIDGET_ID
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import dybarsky.agecounter.databinding.ActivityConfigBinding
 
@@ -38,22 +39,22 @@ class ConfigActivity : AppCompatActivity(), View {
     }
 
     private fun ActivityConfigBinding.setup() {
-        day.setOnClickListener {
+        day.onClick {
             showDialog(days) {
                 presenter.setDay(it)
             }
         }
-        month.setOnClickListener {
+        month.onClick {
             showDialog(months) {
                 presenter.setMonth(it)
             }
         }
-        year.setOnClickListener {
+        year.onClick {
             showDialog(years) {
                 presenter.setYear(it)
             }
         }
-        done.setOnClickListener {
+        done.onClick {
             presenter.save()
         }
     }

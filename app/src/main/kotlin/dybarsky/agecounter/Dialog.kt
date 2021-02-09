@@ -25,8 +25,8 @@ fun <V> Context.showDialog(values: List<V>, onSelect: (V) -> Unit) {
         .apply {
             items.layoutManager = layoutManager()
             items.adapter = adapter(values) {
-                dialog?.dismiss()
                 onSelect(it)
+                dialog?.dismiss()
             }
         }
 
@@ -44,15 +44,15 @@ private fun <V> adapter(values: List<V>, onSelect: (V) -> Unit) =
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<ItemBinding> {
             val inflater = LayoutInflater.from(parent.context)
-            val binding = ItemBinding.inflate(inflater)
+            val binding = ItemBinding.inflate(inflater, parent, false)
             return BindingViewHolder(binding)
         }
 
         override fun onBindViewHolder(holder: BindingViewHolder<ItemBinding>, position: Int) {
             val data = values[position]
-            holder.binding.item.let {
-                it.text = data.toString()
-                it.setOnClickListener { onSelect(data) }
+            with(holder.binding) {
+                item.text = data.toString()
+                root.onClick(LONG_DELAY) { onSelect(data) }
             }
         }
     }
