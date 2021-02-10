@@ -30,8 +30,6 @@
             </intent-filter>
         </activity>
 
-<!--        <receiver android:name=".ReceiverLegacy"/>-->
-
     </application>
 
 </manifest>
