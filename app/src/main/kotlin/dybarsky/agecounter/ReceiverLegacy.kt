@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 
-class Receiver : BroadcastReceiver() {
+class ReceiverLegacy : BroadcastReceiver() {
 
     companion object {
 
@@ -22,12 +22,12 @@ class Receiver : BroadcastReceiver() {
             set(value) { putExtra(ARG_BIRTHDAY, value) }
 
         fun intent(context: Context): PendingIntent {
-            val intent = Intent(context, Receiver::class.java)
+            val intent = Intent(context, ReceiverLegacy::class.java)
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         fun intent(context: Context, widgetId: Int, age: Long): PendingIntent {
-            val intent = Intent(context, Receiver::class.java).also {
+            val intent = Intent(context, ReceiverLegacy::class.java).also {
                 it.birthday = age
                 it.widgetId = widgetId
             }

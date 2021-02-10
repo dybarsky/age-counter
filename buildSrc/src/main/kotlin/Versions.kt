@@ -17,6 +17,7 @@ object Versions {
     const val androidxAppCompat = "1.3.0-beta01"
     const val androidxConstraintLayout = "2.1.0-alpha2"
     const val androidxRecyclerView = "1.2.0-beta01"
+    const val androidXWorkManager = "2.5.0"
 
     const val kotlinCoroutines = "1.3.4"
 

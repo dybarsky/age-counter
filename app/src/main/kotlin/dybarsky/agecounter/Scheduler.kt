@@ -1,33 +1,35 @@
 package dybarsky.agecounter
 
-import android.app.AlarmManager
 import android.content.Context
 import android.util.Log
-import androidx.core.app.AlarmManagerCompat
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import dybarsky.agecounter.Worker.Companion.createData
+import java.util.concurrent.TimeUnit
 
-class Scheduler(private val context: Context) {
+class Scheduler(context: Context) {
 
     companion object {
-        private const val INTERVAL = 15 * 60 * 1000L
+        private const val INTERVAL = 15L
     }
 
-    private val alarmManager by lazy {
-        context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    }
+    private val workManager = WorkManager.getInstance(context)
 
     fun schedule(widgetId: Int, age: Long) {
         Log.d("###", "schedule $widgetId $age")
-        AlarmManagerCompat.setExact(
-            alarmManager,
-            AlarmManager.RTC,
-            System.currentTimeMillis() + INTERVAL,
-            Receiver.intent(context, widgetId, age)
-        )
+
+        val request = PeriodicWorkRequest
+            .Builder(Worker::class.java, INTERVAL, TimeUnit.MINUTES)
+            .setInputData(createData(widgetId))
+            .addTag(widgetId.toString())
+            .build()
+
+        workManager.enqueue(request)
     }
 
-    fun cancel() {
+    fun cancel(widgetId: Int) {
         Log.d("###", "cancel")
-        alarmManager.cancel(Receiver.intent(context))
+        workManager.cancelAllWorkByTag(widgetId.toString())
     }
 
 }

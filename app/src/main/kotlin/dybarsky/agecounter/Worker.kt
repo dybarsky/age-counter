@@ -1,37 +1,43 @@
 package dybarsky.agecounter
 
+import android.content.Context
 import android.util.Log
-import android.util.SparseArray
+import androidx.work.CoroutineWorker
+import androidx.work.Data
+import androidx.work.WorkerParameters
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class Worker(private val remote: Remote) {
+class Worker(
+    private val context: Context,
+    workerParams: WorkerParameters
+): CoroutineWorker(context, workerParams) {
 
     companion object {
         private const val DELAY = 3156L
+        private const val ARG_ID = "widget id"
+
+        private val job = Job()
+        private val scope = CoroutineScope(job + Dispatchers.Main)
+
+        fun createData(widgetId: Int) = Data.Builder().putInt(ARG_ID, widgetId).build()
     }
 
-    private val scope = MainScope()
-    private val jobs = SparseArray<Job>()
-
-    fun start(widgetId: Int) {
-        Log.d("###", "start $widgetId")
-
-        val job = scope.launch {
+    override suspend fun doWork(): Result {
+        setForeground(context.createForegroundInfo())
+        job.cancelChildren()
+        scope.launch {
             while (true) {
+                val widgetId = inputData.getInt(ARG_ID, -1)
                 Log.d("###", "refresh $widgetId")
-                remote.update(widgetId)
+                App.instance.refreshWidget(widgetId)
                 delay(DELAY)
             }
         }
-        jobs.put(widgetId, job)
-    }
-
-    fun stop(widgetId: Int) {
-        Log.d("###", "stop $widgetId")
-        jobs[widgetId]?.cancel()
-        jobs.delete(widgetId)
+        return Result.success()
     }
 }

@@ -8,6 +8,8 @@ object Libraries {
     const val androidXAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
     const val androidxConstraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.androidxConstraintLayout}"
     const val androidxRecyclerView = "androidx.recyclerview:recyclerview:${Versions.androidxRecyclerView}"
+    const val androidXWorkManager = "androidx.work:work-runtime-ktx:${Versions.androidXWorkManager}"
+
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     const val dataBinding = "androidx.databinding:databinding-compiler:${Versions.dataBinding}"
 }

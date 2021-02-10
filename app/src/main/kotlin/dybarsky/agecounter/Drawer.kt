@@ -10,7 +10,7 @@ import android.graphics.Typeface
 class Drawer(context: Context) {
 
     companion object {
-        private const val OFFSET_X = 100f
+        private const val OFFSET_X = 80f
         private const val OFFSET_Y = 140f
         private const val FONT_SIZE = 100f
         private const val BITMAP_WIDTH = 600

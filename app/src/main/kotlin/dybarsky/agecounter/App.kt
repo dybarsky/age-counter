@@ -10,19 +10,21 @@ class App : Application() {
 
     private val persistence by lazy { Persistence() }
     private val scheduler by lazy { Scheduler(this) }
-    private val remote by lazy { Remote(this, persistence) }
-    private val worker by lazy { Worker(remote) }
+    private val remote by lazy { Remote(this) }
 
     fun startWidget(birthday: Long, widgetId: Int) {
         persistence.birthday = birthday
-        remote.update(widgetId)
-        worker.start(widgetId)
         scheduler.schedule(widgetId, birthday)
     }
 
     fun stopWidget(widgetId: Int) {
-        worker.stop(widgetId)
-        scheduler.cancel()
+        scheduler.cancel(widgetId)
+    }
+
+    fun refreshWidget(widgetId: Int) {
+        val birthday = persistence.birthday
+        val (whole, fraction) = getAge(birthday).split()
+        remote.update(widgetId, whole, fraction)
     }
 
     override fun onCreate() {

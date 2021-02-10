@@ -28,5 +28,6 @@ dependencies {
     dataBinding()
     androidXCore()
     materialDesign()
+    androidXWorkManager()
     androidXRecyclerView()
 }

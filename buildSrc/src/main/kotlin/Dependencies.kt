@@ -27,3 +27,7 @@ fun DependencyHandler.androidXRecyclerView() {
 fun DependencyHandler.dataBinding() {
     kapt(Libraries.dataBinding)
 }
+
+fun DependencyHandler.androidXWorkManager() {
+    implementation(Libraries.androidXWorkManager)
+}
