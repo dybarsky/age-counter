@@ -23,5 +23,5 @@ object Versions {
 
     const val ktxCore = "1.5.0-beta01"
     const val materialDesign = "1.3.0-rc01"
-    const val dataBinding = "4.2.0-beta04"
+    const val dataBinding = "4.2.0-beta05"
 }
