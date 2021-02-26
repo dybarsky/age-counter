@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="asdf"></color>
+    <color name="gobelin_mauve">#5d5b6a</color>
+    <color name="peak_point">#758184</color>
+    <color name="child_of_light">#f0f5f9</color>
+    <color name="hikers_delight">#cfb495</color>
+    <color name="all_spice">#f5cdaa</color>
+    <color name="all_spice_alpha">#33f5cdaa</color>
 </resources>

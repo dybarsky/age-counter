@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppThemeBase" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="android:windowBackground">@color/color_background</item>
+        <item name="android:statusBarColor">@color/color_background</item>
+        <item name="android:navigationBarColor">@color/color_background</item>
+    </style>
 
+    <style name="AppTheme" parent="AppThemeBase"/>
+
+    <style name="SelectableItemTheme">
+        <item name="colorControlHighlight">@color/color_primary_alpha</item>
     </style>
 </resources>

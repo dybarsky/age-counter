@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="color_background">@color/gobelin_mauve</color>
+    <color name="color_text">@color/child_of_light</color>
+    <color name="color_primary">@color/all_spice</color>
+    <color name="color_primary_alpha">@color/all_spice_alpha</color>
+    <color name="color_primary_dark">@color/hikers_delight</color>
 </resources>
