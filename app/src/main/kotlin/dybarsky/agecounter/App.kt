@@ -8,7 +8,7 @@ class App : Application() {
         lateinit var instance: App
     }
 
-    private val persistence by lazy { Persistence() }
+    private val persistence by lazy { Persistence(this) }
     private val scheduler by lazy { Scheduler(this) }
     private val remote by lazy { Remote(this) }
 
